@@ -29,20 +29,28 @@ let MyDate = function(day, month, year) {
         this.month = month;
         this.year = year;
     }
-    this.toStr = function () {
-        let date = [this.day,this.month,this.year];
-        return date.toString()
+    this.toString = function () {
+        if (this.day < 10 && this.month < 10){
+            return "0" + this.day + "/0" + this.month + "/" + this.year;
+        }
+        else {
+            if (this.day >= 10 && this.month < 10){
+                return this.day + "/0" +this.month + "/" + this.year;
+            }
+            else {
+                if (this.day < 10 && this.month >= 10){
+                    return "0" + this.day + "/" +this.month + "/" + this.year;
+                }
+                else {
+                    return this.day + "/" +this.month + "/" + this.year;
+                }
+            }
+        }
     };
 };
 
 let date = new MyDate(2, 2, 2007);
 
-date.setDate(10,10,2020);
+date.setDate(5,10,2020);
 
-let day = date.getDay();
-
-let month = date.getMonth()
-
-let year = date.getYear();
-
-alert(day + "/" + month + "/" + year);
+alert(date.toString());
